@@ -325,6 +325,13 @@
   }
 
   root.addEventListener("click", (e) => {
+    if (e.target.matches("[data-brief-toggle]")) {
+      const body = q("[data-brief]");
+      const open = body.hidden;
+      body.hidden = !open;
+      e.target.setAttribute("aria-expanded", String(open));
+      return;
+    }
     const b = e.target.closest("[data-action]");
     if (!b) return;
     const v = b.dataset.val;
